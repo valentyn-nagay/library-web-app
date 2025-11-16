@@ -1,0 +1,43 @@
+# Всё текстовое – нормализуем в LF в репозитории
+* text=auto eol=lf
+
+# Скрипты (Linux/macOS)
+*.sh text eol=lf
+
+# Windows-скрипты (если появятся)
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Конфиги и разметка
+*.yml  text
+*.yaml text
+*.json text
+*.xml  text
+*.properties text
+*.md   text
+*.html text
+*.css  text
+*.js   text
+
+# Исходники Java
+*.java text
+*.kt   text
+*.gradle text
+
+# Бинарники
+*.jar  binary
+*.war  binary
+*.zip  binary
+*.gz   binary
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.ico  binary
+*.pdf  binary
+
+# Не пытаться диффать эти файлы как текст
+*.class binary
+*.so    binary
+*.dll   binary
+*.exe   binary
