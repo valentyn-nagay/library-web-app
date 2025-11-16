@@ -99,6 +99,10 @@ public class Book {
         return ebookUrl;
     }
 
+    public void setEebookUrl(String ebookUrl) {
+        this.ebookUrl = ebookUrl;
+    }
+
     public void setEbookUrl(String ebookUrl) {
         this.ebookUrl = ebookUrl;
     }

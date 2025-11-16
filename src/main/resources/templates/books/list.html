@@ -7,6 +7,10 @@
 <body>
 <h1>Каталог книг</h1>
 
+<form th:action="@{/logout}" method="post">
+    <button type="submit">Выйти</button>
+</form>
+
 <p>
     <a href="/books/new">Добавить книгу</a> |
     <a href="/loans">Выдача книг</a>
