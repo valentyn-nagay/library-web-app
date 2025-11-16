@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Выдача книг</title>
+</head>
+<body>
+<h1>Выдача книг</h1>
+
+<p>
+    <a href="/books">Каталог книг</a> |
+    <a href="/loans/new">Оформить выдачу</a>
+</p>
+
+<table border="1" cellpadding="5" cellspacing="0">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Книга</th>
+        <th>Читатель</th>
+        <th>Дата выдачи</th>
+        <th>Вернуть до</th>
+        <th>Возвращена</th>
+        <th>Действие</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="loan : ${loans}">
+        <td th:text="${loan.id}"></td>
+        <td th:text="${loan.book.title}"></td>
+        <td th:text="${loan.user.fullName}"></td>
+        <td th:text="${loan.startDate}"></td>
+        <td th:text="${loan.dueDate}"></td>
+        <td th:text="${loan.returnedAt} ?: 'нет'"></td>
+        <td>
+            <form th:if="${loan.returnedAt} == null"
+                  th:action="@{'/loans/' + ${loan.id} + '/return'}"
+                  method="post">
+                <button type="submit">Вернуть</button>
+            </form>
+            <span th:if="${loan.returnedAt} != null">—</span>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

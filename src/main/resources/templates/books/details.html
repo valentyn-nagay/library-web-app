@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${book.title}">Книга</title>
+</head>
+<body>
+<h1 th:text="${book.title}">Книга</h1>
+
+<p><strong>Автор:</strong> <span th:text="${book.author}"></span></p>
+<p><strong>Год:</strong> <span th:text="${book.publishYear}"></span></p>
+<p><strong>ISBN:</strong> <span th:text="${book.isbn}"></span></p>
+<p><strong>Всего экземпляров:</strong> <span th:text="${book.totalCopies}"></span></p>
+<p><strong>Доступно:</strong> <span th:text="${book.availableCopies}"></span></p>
+
+<p>
+    <strong>Электронная версия:</strong>
+    <span th:if="${book.hasEbook}">
+        <a th:href="${book.ebookUrl}" target="_blank">Скачать</a>
+    </span>
+    <span th:if="${!book.hasEbook}">нет</span>
+</p>
+
+<p>
+    <a href="/books">Назад в каталог</a> |
+    <a href="/loans">Перейти к выдаче книг</a>
+</p>
+
+</body>
+</html>

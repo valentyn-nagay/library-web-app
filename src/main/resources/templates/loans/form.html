@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Новая выдача</title>
+</head>
+<body>
+<h1>Новая выдача книги</h1>
+
+<form action="/loans" method="post">
+    <p>
+        <label>Книга:<br>
+            <select name="bookId" required>
+                <option value="" disabled selected>Выберите книгу</option>
+                <option th:each="book : ${books}"
+                        th:value="${book.id}"
+                        th:text="${book.title}">
+                </option>
+            </select>
+        </label>
+    </p>
+
+    <p>
+        <label>Читатель:<br>
+            <select name="userId" required>
+                <option value="" disabled selected>Выберите читателя</option>
+                <option th:each="user : ${users}"
+                        th:value="${user.id}"
+                        th:text="${user.fullName}">
+                </option>
+            </select>
+        </label>
+    </p>
+
+    <p>
+        <label>Срок выдачи (дней):<br>
+            <input type="number" name="days" value="14" min="1">
+        </label>
+    </p>
+
+    <p>
+        <button type="submit">Оформить</button>
+        <a href="/loans">Отмена</a>
+    </p>
+</form>
+
+</body>
+</html>

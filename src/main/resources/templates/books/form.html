@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Новая книга</title>
+</head>
+<body>
+<h1>Новая книга</h1>
+
+<form th:action="@{/books}" th:object="${book}" method="post">
+    <p>
+        <label>Название:<br>
+            <input type="text" th:field="*{title}" required>
+        </label>
+    </p>
+
+    <p>
+        <label>Автор:<br>
+            <input type="text" th:field="*{author}" required>
+        </label>
+    </p>
+
+    <p>
+        <label>Год:<br>
+            <input type="number" th:field="*{publishYear}">
+        </label>
+    </p>
+
+    <p>
+        <label>ISBN:<br>
+            <input type="text" th:field="*{isbn}">
+        </label>
+    </p>
+
+    <p>
+        <label>Всего экземпляров:<br>
+            <input type="number" th:field="*{totalCopies}">
+        </label>
+    </p>
+
+    <p>
+        <label>
+            <input type="checkbox" th:field="*{hasEbook}">
+            Есть электронная книга
+        </label>
+    </p>
+
+    <p>
+        <label>Ссылка на электронную книгу:<br>
+            <input type="text" th:field="*{ebookUrl}">
+        </label>
+    </p>
+
+    <p>
+        <button type="submit">Сохранить</button>
+        <a href="/books">Отмена</a>
+    </p>
+</form>
+
+</body>
+</html>
