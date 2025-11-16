@@ -4,9 +4,19 @@ VALUES ('Иван Петров', 'ivan@example.com'),
        ('Мария Смирнова', 'maria@example.com')
     ON CONFLICT DO NOTHING;
 
+-- Администратор с логином/паролем admin / admin (пароль в BCrypt)
+INSERT INTO library_user (full_name, email, username, password, role)
+VALUES (
+           'Администратор',
+           'admin@example.com',
+           'admin',
+           '$2a$10$Ihk05VSds5rUSgMdsMVi9OKMIx2yUvMz7y9VP3rJmQeizZLrhLMyq',
+           'ADMIN'
+       )
+    ON CONFLICT DO NOTHING;
+
 -- Стартовые книги (БЕЗ явного id — пусть генерируется автоинкрементом)
 INSERT INTO book (title, author, publish_year, isbn, total_copies, available_copies, has_ebook, ebook_url)
 VALUES ('Приключения Тома Сойера', 'Марк Твен', 1876, '978-5-699-12014-1', 5, 5, TRUE, 'https://example.com/tom-sawyer.pdf'),
        ('Мастер и Маргарита', 'Михаил Булгаков', 1967, '978-5-389-07473-9', 3, 3, FALSE, NULL)
     ON CONFLICT DO NOTHING;
-
