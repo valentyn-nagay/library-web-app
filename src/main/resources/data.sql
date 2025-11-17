@@ -1,4 +1,4 @@
--- Стартовые читатели (без логина/пароля, только для выдачи книг)
+-- Стартовые читатели (без логина/пароля, только сущности для выдачи)
 INSERT INTO library_user (full_name, email)
 VALUES ('Иван Петров', 'ivan@example.com'),
        ('Мария Смирнова', 'maria@example.com')
@@ -15,8 +15,56 @@ VALUES (
        )
     ON CONFLICT DO NOTHING;
 
--- Стартовые книги (БЕЗ явного id — пусть генерируется автоинкрементом)
+--- Open Source Books (локальные PDF)
+
 INSERT INTO book (title, author, publish_year, isbn, total_copies, available_copies, has_ebook, ebook_url)
-VALUES ('Приключения Тома Сойера', 'Марк Твен', 1876, '978-5-699-12014-1', 5, 5, TRUE, 'https://example.com/tom-sawyer.pdf'),
-       ('Мастер и Маргарита', 'Михаил Булгаков', 1967, '978-5-389-07473-9', 3, 3, FALSE, NULL)
-    ON CONFLICT DO NOTHING;
+VALUES
+    ('Advanced Linux Programming',
+     'Mark Mitchell, Jeffery Oldham, Alex Samuel',
+     NULL,
+     '978-0735710436',
+     3, 3, TRUE,
+     '/ebooks/advanced-linux-programming.pdf'),
+
+    ('GNU Diffutils Manual',
+     'D. MacKenzie, P. Eggert, R. Stallman',
+     NULL,
+     '978-0954161750',
+     3, 3, TRUE,
+     '/ebooks/diffutils.pdf'),
+
+    ('Free Software, Free Society (Hardcover Edition)',
+     'Richard M. Stallman',
+     2015,
+     '9780983159254',
+     3, 3, TRUE,
+     '/ebooks/fsfs3-hardcover.pdf'),
+
+    ('Git Magic',
+     'Ben Lynn',
+     NULL,
+     NULL,
+     3, 3, TRUE,
+     '/ebooks/gitmagic.pdf'),
+
+    ('Perl Programer''s Reference Guide',
+     'Larry Wall and others',
+     NULL,
+     '978-1906966027',
+     3, 3, TRUE,
+     '/ebooks/Perl Programmers Reference Guide.pdf'),
+
+    ('The Guile Reference Manual',
+     'The Guile Developers',
+     NULL,
+     '978-1906966157',
+     3, 3, TRUE,
+     '/ebooks/The Guile Reference Manual.pdf'),
+
+    ('Think Python, 2nd edition',
+     'Allen B. Downey',
+     2015,
+     '9781491939369',
+     3, 3, TRUE,
+     '/ebooks/thinkpython2.pdf');
+
