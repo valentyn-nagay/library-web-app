@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Панель библиотеки</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<div class="container">
+    <header class="page-header">
+        <div>
+            <h1>Панель библиотеки</h1>
+            <p class="page-subtitle">Краткая сводка по каталогу и выдачам.</p>
+        </div>
+        <div class="header-actions">
+            <button type="button" class="btn btn-secondary btn-sm" data-theme-toggle>
+                Светлая тема
+            </button>
+            <form th:action="@{/logout}" method="post" data-confirm="Выйти из системы?">
+                <button type="submit" class="btn btn-secondary btn-sm">Выйти</button>
+            </form>
+        </div>
+    </header>
+
+    <nav class="nav-links">
+        <a href="/dashboard" class="nav-link nav-link-active">Главная</a>
+        <a href="/books" class="nav-link">Книги</a>
+        <a href="/loans" class="nav-link">Выдача книг</a>
+    </nav>
+
+    <section class="card">
+        <div class="card-header">
+            <h2 class="card-title">Сводка</h2>
+            <p class="card-subtitle">Основные показатели библиотеки.</p>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="stat-card">
+                <div class="stat-label">Книг в каталоге</div>
+                <div class="stat-value" th:text="${booksCount}">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Доступно экземпляров</div>
+                <div class="stat-value" th:text="${totalAvailableCopies}">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Всего выдач</div>
+                <div class="stat-value" th:text="${loansCount}">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Активных выдач</div>
+                <div class="stat-value" th:text="${activeLoansCount}">0</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="card">
+        <div class="card-header card-header-flex">
+            <div>
+                <h2 class="card-title">Быстрые действия</h2>
+                <p class="card-subtitle">Часто используемые сценарии.</p>
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <a href="/books/new" class="btn btn-primary">Добавить книгу</a>
+            <a href="/loans/new" class="btn btn-secondary">Оформить выдачу</a>
+            <a href="/books" class="btn btn-link">Перейти к каталогу</a>
+        </div>
+    </section>
+</div>
+
+<button id="backToTop" class="back-to-top" type="button" aria-label="Наверх">
+    ↑
+</button>
+
+<script th:src="@{/js/main.js}"></script>
+</body>
+</html>

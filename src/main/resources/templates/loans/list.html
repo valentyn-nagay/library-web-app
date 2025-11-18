@@ -12,12 +12,18 @@
             <h1>Выдача книг</h1>
             <p class="page-subtitle">Список активных и завершённых выдач.</p>
         </div>
-        <form th:action="@{/logout}" method="post" data-confirm="Выйти из системы?">
-            <button type="submit" class="btn btn-secondary btn-sm">Выйти</button>
-        </form>
+        <div class="header-actions">
+            <button type="button" class="btn btn-secondary btn-sm" data-theme-toggle>
+                Светлая тема
+            </button>
+            <form th:action="@{/logout}" method="post" data-confirm="Выйти из системы?">
+                <button type="submit" class="btn btn-secondary btn-sm">Выйти</button>
+            </form>
+        </div>
     </header>
 
     <nav class="nav-links">
+        <a href="/dashboard" class="nav-link">Главная</a>
         <a href="/books" class="nav-link">Книги</a>
         <a href="/loans" class="nav-link nav-link-active">Выдача книг</a>
     </nav>
@@ -78,6 +84,11 @@
                 </tr>
                 </tbody>
             </table>
+        </div>
+
+        <div class="pagination"
+             data-pagination="#loansTable"
+             data-page-size="10">
         </div>
     </section>
 </div>
