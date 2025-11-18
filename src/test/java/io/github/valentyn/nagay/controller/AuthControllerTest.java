@@ -1,3 +1,4 @@
+
 package io.github.valentyn.nagay.controller;
 
 import io.github.valentyn.nagay.model.LibraryUser;
@@ -36,7 +37,7 @@ class AuthControllerTest {
     }
 
     @Test
-    void registerUser_WhenUsernameAlreadyExists_ShouldReturnRegisterWithError() {
+    void register_WhenUsernameAlreadyExists_ShouldReturnRegisterWithError() {
         LibraryUserRepository repo = mock(LibraryUserRepository.class);
         PasswordEncoder encoder = mock(PasswordEncoder.class);
         AuthController controller = new AuthController(repo, encoder);
@@ -48,7 +49,7 @@ class AuthControllerTest {
 
         Model model = new ExtendedModelMap();
 
-        String view = controller.registerUser(form, model);
+        String view = controller.register(form, model);
 
         assertThat(view).isEqualTo("auth/register");
         assertThat(model.getAttribute("error")).isNotNull();
@@ -56,7 +57,7 @@ class AuthControllerTest {
     }
 
     @Test
-    void registerUser_WhenUsernameFree_ShouldSaveUserAndRedirectToLogin() {
+    void register_WhenUsernameFree_ShouldSaveUserAndRedirectToLogin() {
         LibraryUserRepository repo = mock(LibraryUserRepository.class);
         PasswordEncoder encoder = mock(PasswordEncoder.class);
         when(encoder.encode("pwd")).thenReturn("encoded");
@@ -73,7 +74,7 @@ class AuthControllerTest {
 
         Model model = new ExtendedModelMap();
 
-        String view = controller.registerUser(form, model);
+        String view = controller.register(form, model);
 
         assertThat(view).isEqualTo("redirect:/login?registered");
         verify(repo).save(argThat(u ->

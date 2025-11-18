@@ -36,9 +36,9 @@ class SecurityIntegrationTest {
     }
 
     @Test
-    void homePageIsAccessibleWithoutAuthentication() throws Exception {
+    void homePageRequiresAuthenticationAndRedirectsToLogin() throws Exception {
         mockMvc.perform(get("/"))
-                .andExpect(status().isOk())
-                .andExpect(view().name("dashboard"));
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrlPattern("**/login"));
     }
 }
