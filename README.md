@@ -11,12 +11,13 @@
 - Spring Boot 3 (Web, Thymeleaf, Data JPA, Security)
 - PostgreSQL
 - Docker + Docker Compose
+- Maven Wrapper (`mvnw` / `mvnw.cmd`)
 
 ---
 
 ## Быстрый старт
 
-### Запуск через Docker Compose
+### Вариант 1 — запуск через Docker Compose
 
 1. Установите Docker и Docker Compose.
 2. В корне проекта выполните:
@@ -38,7 +39,41 @@
     - Страница регистрации:  
       `http://localhost:8080/register`
 
-### Подключение к БД
+### Вариант 2 — запуск локально с использованием Maven Wrapper
+
+Maven Wrapper позволяет запускать проект без предварительной установки Maven в системе:
+все необходимые артефакты Maven будут скачаны автоматически.
+
+1. Убедитесь, что установлен JDK 17+
+2. В корне проекта (где лежит `pom.xml`) выполните:
+
+   **Linux / macOS:**
+
+   ```bash
+   ./mvnw clean package
+   ```
+
+   **Windows (cmd / PowerShell):**
+
+   ```bash
+   mvnw.cmd clean package
+   ```
+
+3. После успешной сборки запустите приложение:
+
+   ```bash
+   java -jar target/library-0.0.1-SNAPSHOT.jar
+   ```
+
+4. Приложение будет доступно по адресу:
+
+   ```text
+   http://localhost:8080
+   ```
+
+---
+
+## Подключение к БД
 
 Параметры подключения указаны в `docker-compose.yml`:
 
@@ -71,7 +106,7 @@ jdbc:postgresql://localhost:5432/library
    ON CONFLICT DO NOTHING;
    ```
 
-2. **Учетную запись администратора** с заранее заданными логином и паролем:
+2. **Учетную запись администратора** с заранее заданными логином и парпаролем:
 
    ```text
    login:  admin
@@ -157,7 +192,7 @@ docker-compose up --build
 
 ### Java-код
 
-Корень пакета: `src/main/java/com/example/library`
+Корень пакета: `src/main/java/io/github/valentyn/nagay`
 
 - `LibraryApplication` — точка входа в приложение.
 - `model` — сущности базы данных:
@@ -197,20 +232,30 @@ docker-compose up --build
 
 ## Полезные команды
 
-### Сборка и запуск без Docker
+### Сборка и запуск без Docker (через Maven Wrapper)
 
-Сборка проекта (без использования Docker):
+**Linux / macOS:**
 
 ```bash
-mvn clean package
+./mvnw clean package
+./mvnw test
 ```
 
-Запуск локально (при условии, что PostgreSQL запущен на `localhost:5432`
-и настройки в `application.yml` соответствуют параметрам БД):
+**Windows:**
+
+```bash
+mvnw.cmd clean package
+mvnw.cmd test
+```
+
+Запуск приложения (после сборки):
 
 ```bash
 java -jar target/library-0.0.1-SNAPSHOT.jar
 ```
+
+> Для локального запуска без Docker потребуется запущенный PostgreSQL на `localhost:5432`
+> с параметрами доступа, соответствующими `application.yml`.
 
 ### Управление контейнерами Docker
 
