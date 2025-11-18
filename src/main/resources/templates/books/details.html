@@ -3,28 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="${book.title}">Книга</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
-<h1 th:text="${book.title}">Книга</h1>
+<div class="container">
+    <header class="page-header">
+        <div>
+            <h1 th:text="${book.title}">Книга</h1>
+            <p class="page-subtitle">Подробная информация о книге в каталоге.</p>
+        </div>
+        <form th:action="@{/logout}" method="post" data-confirm="Выйти из системы?">
+            <button type="submit" class="btn btn-secondary btn-sm">Выйти</button>
+        </form>
+    </header>
 
-<p><strong>Автор:</strong> <span th:text="${book.author}"></span></p>
-<p><strong>Год:</strong> <span th:text="${book.publishYear}"></span></p>
-<p><strong>ISBN:</strong> <span th:text="${book.isbn}"></span></p>
-<p><strong>Всего экземпляров:</strong> <span th:text="${book.totalCopies}"></span></p>
-<p><strong>Доступно:</strong> <span th:text="${book.availableCopies}"></span></p>
+    <nav class="nav-links">
+        <a href="/books" class="nav-link nav-link-active">Книги</a>
+        <a href="/loans" class="nav-link">Выдача книг</a>
+    </nav>
 
-<p>
-    <strong>Электронная версия:</strong>
-    <span th:if="${book.hasEbook}">
-        <a th:href="${book.ebookUrl}" target="_blank">Скачать</a>
-    </span>
-    <span th:if="${!book.hasEbook}">нет</span>
-</p>
+    <section class="card">
+        <p><strong>Автор:</strong> <span th:text="${book.author}"></span></p>
+        <p><strong>Год:</strong> <span th:text="${book.publishYear}"></span></p>
+        <p><strong>ISBN:</strong> <span th:text="${book.isbn}"></span></p>
+        <p><strong>Всего экземпляров:</strong> <span th:text="${book.totalCopies}"></span></p>
+        <p><strong>Доступно:</strong> <span th:text="${book.availableCopies}"></span></p>
 
-<p>
-    <a href="/books">Назад в каталог</a> |
-    <a href="/loans">Перейти к выдаче книг</a>
-</p>
+        <p>
+            <strong>Электронная версия:</strong>
+            <span th:if="${book.hasEbook}">
+                <a th:href="${book.ebookUrl}" target="_blank">Скачать</a>
+            </span>
+            <span th:if="${!book.hasEbook}">нет</span>
+        </p>
 
+        <div class="form-actions">
+            <a href="/books" class="btn btn-secondary btn-sm">Назад в каталог</a>
+            <a href="/loans" class="btn btn-primary btn-sm">Перейти к выдаче книг</a>
+        </div>
+    </section>
+</div>
+
+<button id="backToTop" class="back-to-top" type="button" aria-label="Наверх">
+    ↑
+</button>
+
+<script th:src="@{/js/main.js}"></script>
 </body>
 </html>

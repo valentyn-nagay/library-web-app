@@ -3,50 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <title>Выдача книг</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
-<h1>Выдача книг</h1>
+<div class="container">
+    <header class="page-header">
+        <div>
+            <h1>Выдача книг</h1>
+            <p class="page-subtitle">Список активных и завершённых выдач.</p>
+        </div>
+        <form th:action="@{/logout}" method="post" data-confirm="Выйти из системы?">
+            <button type="submit" class="btn btn-secondary btn-sm">Выйти</button>
+        </form>
+    </header>
 
-<form th:action="@{/logout}" method="post">
-    <button type="submit">Выйти</button>
-</form>
+    <nav class="nav-links">
+        <a href="/books" class="nav-link">Книги</a>
+        <a href="/loans" class="nav-link nav-link-active">Выдача книг</a>
+    </nav>
 
-<p>
-    <a href="/books">Каталог книг</a> |
-    <a href="/loans/new">Оформить выдачу</a>
-</p>
+    <section class="card">
+        <div class="card-header card-header-flex">
+            <div>
+                <h2 class="card-title">Список выдач</h2>
+                <p class="card-subtitle">
+                    Всего записей:
+                    <span th:text="${#lists.size(loans)}">0</span>
+                </p>
+            </div>
+            <div class="card-actions">
+                <a href="/loans/new" class="btn btn-primary">Оформить выдачу</a>
+            </div>
+        </div>
 
-<table border="1" cellpadding="5" cellspacing="0">
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Книга</th>
-        <th>Читатель</th>
-        <th>Дата выдачи</th>
-        <th>Вернуть до</th>
-        <th>Возвращена</th>
-        <th>Действие</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="loan : ${loans}">
-        <td th:text="${loan.id}"></td>
-        <td th:text="${loan.book.title}"></td>
-        <td th:text="${loan.user.fullName}"></td>
-        <td th:text="${loan.startDate}"></td>
-        <td th:text="${loan.dueDate}"></td>
-        <td th:text="${loan.returnedAt} ?: 'нет'"></td>
-        <td>
-            <form th:if="${loan.returnedAt} == null"
-                  th:action="@{'/loans/' + ${loan.id} + '/return'}"
-                  method="post">
-                <button type="submit">Вернуть</button>
-            </form>
-            <span th:if="${loan.returnedAt} != null">—</span>
-        </td>
-    </tr>
-    </tbody>
-</table>
+        <div class="table-toolbar">
+            <label class="field">
+                <span class="field-label">Поиск по выдачам</span>
+                <input type="text"
+                       placeholder="Книга, читатель или даты..."
+                       data-table-filter="#loansTable">
+            </label>
+        </div>
 
+        <div class="table-wrapper">
+            <table id="loansTable">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Книга</th>
+                    <th>Читатель</th>
+                    <th>Дата начала</th>
+                    <th>Дата возврата (план)</th>
+                    <th>Фактический возврат</th>
+                    <th>Действия</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="loan : ${loans}">
+                    <td th:text="${loan.id}">1</td>
+                    <td th:text="${loan.book.title}">Книга</td>
+                    <td th:text="${loan.user.fullName}">Читатель</td>
+                    <td th:text="${loan.startDate}">2025-01-01</td>
+                    <td th:text="${loan.dueDate}">2025-01-14</td>
+                    <td th:text="${loan.returnedAt}">—</td>
+                    <td>
+                        <form th:if="${loan.returnedAt} == null"
+                              th:action="@{'/loans/' + ${loan.id} + '/return'}"
+                              method="post"
+                              data-confirm="Отметить книгу как возвращённую?">
+                            <button type="submit" class="btn btn-secondary btn-sm">Вернуть</button>
+                        </form>
+                        <span th:if="${loan.returnedAt} != null">—</span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</div>
+
+<button id="backToTop" class="back-to-top" type="button" aria-label="Наверх">
+    ↑
+</button>
+
+<script th:src="@{/js/main.js}"></script>
 </body>
 </html>

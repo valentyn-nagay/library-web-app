@@ -2,60 +2,84 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Новая книга</title>
+    <title th:text="${book.id} == null ? 'Новая книга' : 'Редактирование книги'">Книга</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
-<h1>Новая книга</h1>
+<div class="container">
+    <header class="page-header">
+        <div>
+            <h1 th:text="${book.id} == null ? 'Новая книга' : 'Редактирование книги'">Книга</h1>
+            <p class="page-subtitle">Заполните информацию о книге для каталога.</p>
+        </div>
+        <form th:action="@{/logout}" method="post" data-confirm="Выйти из системы?">
+            <button type="submit" class="btn btn-secondary btn-sm">Выйти</button>
+        </form>
+    </header>
 
-<form th:action="@{/books}" th:object="${book}" method="post">
-    <p>
-        <label>Название:<br>
-            <input type="text" th:field="*{title}" required>
-        </label>
-    </p>
+    <nav class="nav-links">
+        <a href="/books" class="nav-link nav-link-active">Книги</a>
+        <a href="/loans" class="nav-link">Выдача книг</a>
+    </nav>
 
-    <p>
-        <label>Автор:<br>
-            <input type="text" th:field="*{author}" required>
-        </label>
-    </p>
+    <section class="card">
+        <form th:action="@{/books}" th:object="${book}" method="post">
+            <input type="hidden" th:field="*{id}"/>
 
-    <p>
-        <label>Год:<br>
-            <input type="number" th:field="*{publishYear}">
-        </label>
-    </p>
+            <div class="field">
+                <span class="field-label">Название</span>
+                <input type="text" th:field="*{title}" required>
+            </div>
 
-    <p>
-        <label>ISBN:<br>
-            <input type="text" th:field="*{isbn}">
-        </label>
-    </p>
+            <div class="field">
+                <span class="field-label">Автор</span>
+                <input type="text" th:field="*{author}" required>
+            </div>
 
-    <p>
-        <label>Всего экземпляров:<br>
-            <input type="number" th:field="*{totalCopies}">
-        </label>
-    </p>
+            <div class="field">
+                <span class="field-label">Год публикации</span>
+                <input type="number" th:field="*{publishYear}" min="0">
+            </div>
 
-    <p>
-        <label>
-            <input type="checkbox" th:field="*{hasEbook}">
-            Есть электронная книга
-        </label>
-    </p>
+            <div class="field">
+                <span class="field-label">ISBN</span>
+                <input type="text" th:field="*{isbn}">
+            </div>
 
-    <p>
-        <label>Ссылка на электронную книгу:<br>
-            <input type="text" th:field="*{ebookUrl}">
-        </label>
-    </p>
+            <div class="field">
+                <span class="field-label">Всего экземпляров</span>
+                <input type="number" th:field="*{totalCopies}" min="0">
+            </div>
 
-    <p>
-        <button type="submit">Сохранить</button>
-        <a href="/books">Отмена</a>
-    </p>
-</form>
+            <div class="field">
+                <span class="field-label">Доступно экземпляров</span>
+                <input type="number" th:field="*{availableCopies}" min="0">
+            </div>
 
+            <div class="field">
+                <label>
+                    <input type="checkbox" th:field="*{hasEbook}">
+                    <span class="field-label">Есть электронная версия</span>
+                </label>
+            </div>
+
+            <div class="field">
+                <span class="field-label">Ссылка на электронную книгу (PDF)</span>
+                <input type="text" th:field="*{ebookUrl}">
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Сохранить</button>
+                <a href="/books" class="btn btn-link">Отмена</a>
+            </div>
+        </form>
+    </section>
+</div>
+
+<button id="backToTop" class="back-to-top" type="button" aria-label="Наверх">
+    ↑
+</button>
+
+<script th:src="@{/js/main.js}"></script>
 </body>
 </html>

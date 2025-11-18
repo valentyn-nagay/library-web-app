@@ -3,50 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <title>Каталог книг</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
-<h1>Каталог книг</h1>
+<div class="container">
+    <header class="page-header">
+        <div>
+            <h1>Каталог книг</h1>
+            <p class="page-subtitle">Просматривайте и редактируйте книги в библиотеке.</p>
+        </div>
+        <form th:action="@{/logout}" method="post" data-confirm="Выйти из системы?">
+            <button type="submit" class="btn btn-secondary btn-sm">Выйти</button>
+        </form>
+    </header>
 
-<form th:action="@{/logout}" method="post">
-    <button type="submit">Выйти</button>
-</form>
+    <nav class="nav-links">
+        <a href="/books" class="nav-link nav-link-active">Книги</a>
+        <a href="/loans" class="nav-link">Выдача книг</a>
+    </nav>
 
-<p>
-    <a href="/books/new">Добавить книгу</a> |
-    <a href="/loans">Выдача книг</a>
-</p>
+    <section class="card">
+        <div class="card-header card-header-flex">
+            <div>
+                <h2 class="card-title">Список книг</h2>
+                <p class="card-subtitle">
+                    Всего книг:
+                    <span th:text="${#lists.size(books)}">0</span>
+                </p>
+            </div>
+            <div class="card-actions">
+                <a href="/books/new" class="btn btn-primary">Добавить книгу</a>
+            </div>
+        </div>
 
-<table border="1" cellpadding="5" cellspacing="0">
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Название</th>
-        <th>Автор</th>
-        <th>Год</th>
-        <th>Всего</th>
-        <th>Доступно</th>
-        <th>Электронная</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="book : ${books}">
-        <td th:text="${book.id}"></td>
-        <td>
-            <a th:href="@{'/books/' + ${book.id}}" th:text="${book.title}"></a>
-        </td>
-        <td th:text="${book.author}"></td>
-        <td th:text="${book.publishYear}"></td>
-        <td th:text="${book.totalCopies}"></td>
-        <td th:text="${book.availableCopies}"></td>
-        <td>
-            <span th:if="${book.hasEbook}">
-                <a th:href="${book.ebookUrl}" target="_blank">Скачать</a>
-            </span>
-            <span th:if="${!book.hasEbook}">—</span>
-        </td>
-    </tr>
-    </tbody>
-</table>
+        <div class="table-toolbar">
+            <label class="field">
+                <span class="field-label">Поиск по каталогу</span>
+                <input type="text"
+                       placeholder="Название, автор или ISBN..."
+                       data-table-filter="#booksTable">
+            </label>
+        </div>
 
+        <div class="table-wrapper">
+            <table id="booksTable">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Название</th>
+                    <th>Автор</th>
+                    <th>Год</th>
+                    <th>ISBN</th>
+                    <th>Всего</th>
+                    <th>Доступно</th>
+                    <th>Электронная версия</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="book : ${books}">
+                    <td th:text="${book.id}">1</td>
+                    <td>
+                        <a th:href="@{'/books/' + ${book.id}}"
+                           th:text="${book.title}">Название</a>
+                    </td>
+                    <td th:text="${book.author}">Автор</td>
+                    <td th:text="${book.publishYear}">2024</td>
+                    <td th:text="${book.isbn}">ISBN</td>
+                    <td th:text="${book.totalCopies}">0</td>
+                    <td th:text="${book.availableCopies}">0</td>
+                    <td>
+                        <span th:if="${book.hasEbook}">
+                            <a th:href="${book.ebookUrl}" target="_blank">Скачать</a>
+                        </span>
+                        <span th:if="${!book.hasEbook}">—</span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</div>
+
+<button id="backToTop" class="back-to-top" type="button" aria-label="Наверх">
+    ↑
+</button>
+
+<script th:src="@{/js/main.js}"></script>
 </body>
 </html>

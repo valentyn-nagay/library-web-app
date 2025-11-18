@@ -3,39 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <title>Вход</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
-<h1>Вход в библиотеку</h1>
+<div class="container">
+    <header class="page-header">
+        <div>
+            <h1>Вход в библиотеку</h1>
+            <p class="page-subtitle">Авторизуйтесь, чтобы управлять каталогом и выдачей книг.</p>
+        </div>
+    </header>
 
-<p th:if="${param.error}">
-    <strong style="color: red;">Неверный логин или пароль</strong>
-</p>
-<p th:if="${param.logout}">
-    <strong>Вы вышли из системы</strong>
-</p>
-<p th:if="${param.registered}">
-    <strong>Регистрация успешна! Войдите под своими данными.</strong>
-</p>
+    <section class="card">
+        <div th:if="${param.error}" class="alert alert-error" data-auto-hide="5000">
+            Неверный логин или пароль
+        </div>
+        <div th:if="${param.logout}" class="alert alert-success" data-auto-hide="4000">
+            Вы вышли из системы
+        </div>
+        <div th:if="${param.registered}" class="alert alert-success" data-auto-hide="4000">
+            Регистрация прошла успешно, войдите в систему.
+        </div>
 
-<form th:action="@{/login}" method="post">
-    <p>
-        <label>Логин:<br>
-            <input type="text" name="username" required>
-        </label>
-    </p>
-    <p>
-        <label>Пароль:<br>
-            <input type="password" name="password" required>
-        </label>
-    </p>
-    <p>
-        <button type="submit">Войти</button>
-    </p>
-</form>
+        <form th:action="@{/login}" method="post">
+            <div class="field">
+                <span class="field-label">Имя пользователя</span>
+                <input type="text" name="username" required>
+            </div>
 
-<p>
-    Нет аккаунта? <a href="/register">Зарегистрироваться</a>
-</p>
+            <div class="field">
+                <span class="field-label">Пароль</span>
+                <div class="field-inline-input">
+                    <input type="password" id="loginPassword" name="password" required>
+                    <button type="button"
+                            class="btn btn-link btn-sm"
+                            data-toggle="password"
+                            data-target="#loginPassword">
+                        Показать
+                    </button>
+                </div>
+            </div>
 
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Войти</button>
+                <a href="/register" class="btn btn-link">Зарегистрироваться</a>
+            </div>
+        </form>
+    </section>
+</div>
+
+<button id="backToTop" class="back-to-top" type="button" aria-label="Наверх">
+    ↑
+</button>
+
+<script th:src="@{/js/main.js}"></script>
 </body>
 </html>
