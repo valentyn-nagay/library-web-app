@@ -1,6 +1,6 @@
-package com.example.library.repository;
+package io.github.valentyn.nagay.repository;
 
-import com.example.library.model.Loan;
+import io.github.valentyn.nagay.model.Loan;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface LoanRepository extends JpaRepository<Loan, Long> {

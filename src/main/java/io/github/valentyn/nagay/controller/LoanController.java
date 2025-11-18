@@ -1,8 +1,8 @@
-package com.example.library.controller;
+package io.github.valentyn.nagay.controller;
 
-import com.example.library.repository.BookRepository;
-import com.example.library.repository.LibraryUserRepository;
-import com.example.library.service.LoanService;
+import io.github.valentyn.nagay.repository.BookRepository;
+import io.github.valentyn.nagay.repository.LibraryUserRepository;
+import io.github.valentyn.nagay.service.LoanService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;

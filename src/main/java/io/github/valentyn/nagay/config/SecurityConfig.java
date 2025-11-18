@@ -1,6 +1,6 @@
-package com.example.library.config;
+package io.github.valentyn.nagay.config;
 
-import com.example.library.service.CustomUserDetailsService;
+import io.github.valentyn.nagay.service.CustomUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;

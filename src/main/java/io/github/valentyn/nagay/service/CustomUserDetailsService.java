@@ -1,7 +1,7 @@
-package com.example.library.service;
+package io.github.valentyn.nagay.service;
 
-import com.example.library.model.LibraryUser;
-import com.example.library.repository.LibraryUserRepository;
+import io.github.valentyn.nagay.model.LibraryUser;
+import io.github.valentyn.nagay.repository.LibraryUserRepository;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

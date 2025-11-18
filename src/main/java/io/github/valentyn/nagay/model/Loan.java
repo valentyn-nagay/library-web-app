@@ -1,4 +1,4 @@
-package com.example.library.model;
+package io.github.valentyn.nagay.model;
 
 import jakarta.persistence.*;
 

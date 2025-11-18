@@ -1,8 +1,8 @@
-package com.example.library.controller;
+package io.github.valentyn.nagay.controller;
 
-import com.example.library.model.LibraryUser;
-import com.example.library.repository.LibraryUserRepository;
-import com.example.library.web.RegistrationForm;
+import io.github.valentyn.nagay.model.LibraryUser;
+import io.github.valentyn.nagay.repository.LibraryUserRepository;
+import io.github.valentyn.nagay.web.RegistrationForm;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

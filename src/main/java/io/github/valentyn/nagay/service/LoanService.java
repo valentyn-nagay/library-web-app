@@ -1,11 +1,11 @@
-package com.example.library.service;
+package io.github.valentyn.nagay.service;
 
-import com.example.library.model.Book;
-import com.example.library.model.LibraryUser;
-import com.example.library.model.Loan;
-import com.example.library.repository.BookRepository;
-import com.example.library.repository.LibraryUserRepository;
-import com.example.library.repository.LoanRepository;
+import io.github.valentyn.nagay.model.Book;
+import io.github.valentyn.nagay.model.LibraryUser;
+import io.github.valentyn.nagay.model.Loan;
+import io.github.valentyn.nagay.repository.BookRepository;
+import io.github.valentyn.nagay.repository.LibraryUserRepository;
+import io.github.valentyn.nagay.repository.LoanRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

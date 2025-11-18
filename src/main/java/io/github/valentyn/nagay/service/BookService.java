@@ -1,7 +1,7 @@
-package com.example.library.service;
+package io.github.valentyn.nagay.service;
 
-import com.example.library.model.Book;
-import com.example.library.repository.BookRepository;
+import io.github.valentyn.nagay.model.Book;
+import io.github.valentyn.nagay.repository.BookRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

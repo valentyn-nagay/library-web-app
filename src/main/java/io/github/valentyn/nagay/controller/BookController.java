@@ -1,7 +1,7 @@
-package com.example.library.controller;
+package io.github.valentyn.nagay.controller;
 
-import com.example.library.model.Book;
-import com.example.library.service.BookService;
+import io.github.valentyn.nagay.model.Book;
+import io.github.valentyn.nagay.service.BookService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;

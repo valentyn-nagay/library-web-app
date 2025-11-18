@@ -1,6 +1,6 @@
-package com.example.library.repository;
+package io.github.valentyn.nagay.repository;
 
-import com.example.library.model.LibraryUser;
+import io.github.valentyn.nagay.model.LibraryUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
