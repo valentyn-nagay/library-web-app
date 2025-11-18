@@ -237,21 +237,19 @@ docker-compose up --build
 **Linux / macOS:**
 
 ```bash
-./mvnw clean package
-./mvnw test
+./mvnw clean test package
 ```
 
 **Windows:**
 
 ```bash
-mvnw.cmd clean package
-mvnw.cmd test
+mvnw.cmd clean test package
 ```
 
 Запуск приложения (после сборки):
 
 ```bash
-java -jar target/library-0.0.1-SNAPSHOT.jar
+java -jar target/library-web-app-0.0.1-SNAPSHOT.jar
 ```
 
 > Для локального запуска без Docker потребуется запущенный PostgreSQL на `localhost:5432`
