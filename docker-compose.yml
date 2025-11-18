@@ -29,7 +29,7 @@ services:
       SPRING_DATASOURCE_USERNAME: library
       SPRING_DATASOURCE_PASSWORD: library
     ports:
-      - "8080:8080"
+      - "18080:18080"
 
 volumes:
   library-data:
