@@ -8,10 +8,6 @@ release.properties
 dependency-reduced-pom.xml
 build.log
 
-# Maven wrapper
-.mvn/wrapper/maven-wrapper.jar
-.mvn/wrapper/maven-wrapper.properties
-
 # IntelliJ IDEA
 .idea/
 *.iml
